@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import withHoc from '../hoc';
-import {LayoutContext} from '../../context';
+import { LayoutContext, LanguageContext } from '../../context';
 
 class ClassComponent extends Component {
     constructor(props) {
@@ -42,6 +42,14 @@ class ClassComponent extends Component {
                             <input value={this.state.name} onChange={this.handleChangeName} />
                             <label>Surname:</label>
                             <input value={this.state.surname} onChange={this.handleChangeSurname} />
+                            <LanguageContext.Consumer>
+                                {language => (
+                                    <>
+                                        <label>Language:</label>
+                                        <input defaultValue={language} />
+                                    </>
+                                )}
+                            </LanguageContext.Consumer>
                         </form>
                     </div>
                 )}
