@@ -12,14 +12,7 @@ export const themes = {
 };
 
 export const layout = {
-    center: {
-        height: '100vh',
-        width: '100vw',
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)'
-    }
+    center: 'layout-app',
 };
 export const LayoutContext = React.createContext(layout.center);
 export const ThemeContext = React.createContext(themes.dark);

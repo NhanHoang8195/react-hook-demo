@@ -8,7 +8,7 @@ class ClassComponent extends Component {
         this.state = {
             count: 1,
             name: 'Nhan',
-            surName: 'Hoang',
+            surname: 'Hoang',
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -16,11 +16,11 @@ class ClassComponent extends Component {
     }
     componentDidMount() {
         // call api
-        document.title = this.state.surName + ' ' + this.state.name;
+        document.title = this.state.surname + ' ' + this.state.name;
     }
     componentDidUpdate() {
         // call the same api
-        document.title = this.state.surName + ' ' + this.state.name;
+        document.title = this.state.surname + ' ' + this.state.name;
     }
 
     handleClick() {
@@ -30,14 +30,20 @@ class ClassComponent extends Component {
         this.setState({name: e.target.value});
     }
     handleChangeSurname (e) {
-        this.setState({surName: e.target.value});
+        this.setState({surname: e.target.value});
     }
     render() {
-        console.log('class component', this.state.count);
         return (
             <LayoutContext.Consumer>
                 {theme => (
-
+                    <div className={theme}>
+                        <form>
+                            <label>Name:</label>
+                            <input value={this.state.name} onChange={this.handleChangeName} />
+                            <label>Surname:</label>
+                            <input value={this.state.surname} onChange={this.handleChangeSurname} />
+                        </form>
+                    </div>
                 )}
             </LayoutContext.Consumer>
         );
