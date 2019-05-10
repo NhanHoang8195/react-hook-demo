@@ -26,10 +26,10 @@ class ClassComponent extends Component {
 
     handleClick() {
         console.log(this);
-        this.aaa();
+        this.doThisFunctionLog();
        // this.setState({count: this.state.count + 1});
     };
-    aaa() {
+    doThisFunctionLog() {
         console.log(this);
     }
     handleChangeName (e) {
@@ -40,31 +40,19 @@ class ClassComponent extends Component {
     }
     render() {
         return (
-            <LayoutContext.Consumer>
-                {theme => (
-                    <div className={theme}>
-                        <form>
-                            <div>
-                                <p>Here is class component. Count is <b>{this.props.count}</b></p>
-                                <Button onClick={this.props.onClick}/>
-                                <Button onClick={this.handleClick}/>
-                            </div>
-                            <label>Name:</label>
-                            <input value={this.state.name} onChange={this.handleChangeName} />
-                            <label>Surname:</label>
-                            <input value={this.state.surname} onChange={this.handleChangeSurname} />
-                            <LanguageContext.Consumer>
-                                {language => (
-                                    <>
-                                        <label>Language:</label>
-                                        <input defaultValue={language} />
-                                    </>
-                                )}
-                            </LanguageContext.Consumer>
-                        </form>
+            <div>
+                <form>
+                    <div>
+                        <p>Here is class component. Count is <b>{this.props.count}</b></p>
+                        <Button onClick={this.props.onClick}/>
+                        <Button onClick={this.handleClick}/>
                     </div>
-                )}
-            </LayoutContext.Consumer>
+                    <label>Name:</label>
+                    <input value={this.state.name} onChange={this.handleChangeName} />
+                    <label>Surname:</label>
+                    <input value={this.state.surname} onChange={this.handleChangeSurname} />
+                </form>
+            </div>
         );
     }
 }

@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { LayoutContext, LanguageContext } from '../../context';
+import React, { useState, useEffect } from 'react';
 import Button from '../../components/button';
 
 function onChangeName() {
@@ -14,8 +13,6 @@ export function HookComponent() {
     const [count, setCount] = useState(1);
     const [name, setName] = useState('Nhan');
     const [surname, setSurname] = useState('Hoang');
-    const layout = useContext(LayoutContext);
-    const language = useContext(LanguageContext);
     function handleClick() {
         setCount(count + 1);
     }
