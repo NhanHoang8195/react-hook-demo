@@ -13,7 +13,7 @@ export default function withHoc(WrappedComponent) {
             this.setState({count: this.state.count + 1});
         };
         render() {
-            return <WrappedComponent data={this.state.count} {...this.props} onChange={this.handleChange} />
+            return <WrappedComponent count={this.state.count} {...this.props} onClick={this.handleChange} />
         }
     }
 }

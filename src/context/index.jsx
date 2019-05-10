@@ -6,7 +6,8 @@ export const language = {
 };
 
 export const layout = {
-    center: 'layout-app',
+    centerHook: 'layout-app hook-component',
+    centerClass: 'layout-app class-component',
 };
-export const LayoutContext = React.createContext(layout.center);
+export const LayoutContext = React.createContext(layout.centerHook);
 export const LanguageContext = React.createContext(language.vn);

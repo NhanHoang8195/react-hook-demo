@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import withHoc from '../hoc';
 import { LayoutContext, LanguageContext } from '../../context';
+import Button from '../../components/button';
 
 class ClassComponent extends Component {
     constructor(props) {
@@ -24,8 +25,13 @@ class ClassComponent extends Component {
     }
 
     handleClick() {
-       this.setState({count: this.state.count + 1});
+        console.log(this);
+        this.aaa();
+       // this.setState({count: this.state.count + 1});
     };
+    aaa() {
+        console.log(this);
+    }
     handleChangeName (e) {
         this.setState({name: e.target.value});
     }
@@ -38,6 +44,11 @@ class ClassComponent extends Component {
                 {theme => (
                     <div className={theme}>
                         <form>
+                            <div>
+                                <p>Here is class component. Count is <b>{this.props.count}</b></p>
+                                <Button onClick={this.props.onClick}/>
+                                <Button onClick={this.handleClick}/>
+                            </div>
                             <label>Name:</label>
                             <input value={this.state.name} onChange={this.handleChangeName} />
                             <label>Surname:</label>
