@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import
 import Button from '../../components/button';
 
 function onChangeName() {
@@ -30,7 +31,15 @@ export function HookComponent() {
         <div>
             <form>
                 <div>
-                    <p>Here is hook component. Count is <b>{handleClickOutsite.count}</b></p>
+                    <p>Here is hook component.L5DFGJ6askhdfg;4'
+                        5ẠLS6KH4adfg;sjl'
+                        5akhdfgsadfj;sgha6jsdf'4a5hkl;
+                        g6sadjf'4hkl;
+                        5gASDJF';4áhklg
+                        dÀGdáAfhj;'56DASKL4ghj;
+                        f6'5asdklG4FHJ;
+                        56'ÁDKLgfhj;4
+                        k'5asdgl6FJCount is <b>{handleClickOutsite.count}</b></p>
                     <Button onClick={handleClickOutsite.handleChange} />
                 </div>
                 <label>Name:</label>

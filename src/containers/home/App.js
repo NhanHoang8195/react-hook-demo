@@ -12,7 +12,7 @@ export default function App() {
           </LayoutContext.Provider>
           <LayoutContext.Provider value={layout.centerClass}>
               <LanguageContext.Provider value={language.us}>
-
+                  <ClassComponent />
               </LanguageContext.Provider>
           </LayoutContext.Provider>
       </div>
