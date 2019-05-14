@@ -1,5 +1,5 @@
 import React from 'react';
-import { HookComponent, ClassComponent } from '../demo';
+import { HookComponent, ClassComponent, HookComponent1 } from '../demo';
 import { LayoutContext, LanguageContext, layout, language } from '../../context';
 
 export default function App() {
@@ -8,6 +8,7 @@ export default function App() {
           <LayoutContext.Provider value={layout.centerHook}>
               <LanguageContext.Provider value={language.vn}>
                   <HookComponent />
+                  <HookComponent1 />
               </LanguageContext.Provider>
           </LayoutContext.Provider>
           <LayoutContext.Provider value={layout.centerClass}>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '../../components/button';
 import { onChangeName } from '../hoc/hooks';
 
-export function HookComponent() {
+export function HookComponent1() {
     const [count, setCount] = useState(1);
     const [name, setName] = useState('Nhan');
     const [surname, setSurname] = useState('Hoang');
@@ -23,7 +23,7 @@ export function HookComponent() {
         <div>
             <form>
                 <div>
-                    <p>Here is hook component
+                    <p>Here is hook component 1
                         <b>{handleClickOutsite.count}</b>
                     </p>
                     <Button onClick={handleClickOutsite.handleChange} />
