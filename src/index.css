@@ -36,7 +36,6 @@ body {
     cursor: pointer;
 }
 .layout-app form p {
-  white-space: nowrap;
     display: block;
     margin: 0;
 }
