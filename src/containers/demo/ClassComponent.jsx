@@ -1,49 +1,60 @@
 import React, { Component } from 'react';
-import withHoc from '../hoc';
-import Button from '../../components/button';
+import { LayoutContext, LanguageContext} from '../../context';
 
-class ClassComponent extends Component {
+export default class ClassComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            count: 1,
             name: 'Nhan',
             surname: 'Hoang',
+            width: window.innerWidth,
         };
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeSurname = this.handleChangeSurname.bind(this);
+        this.handleChangeSize = this.handleChangeSize.bind(this);
     }
     componentDidMount() {
-        // call api
         document.title = this.state.surname + ' ' + this.state.name;
+        window.addEventListener('resize', this.handleChangeSize);
     }
     componentDidUpdate() {
-        // call the same api
         document.title = this.state.surname + ' ' + this.state.name;
     }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleChangeSize);
+    }
 
-    handleChangeName (e) {
+    handleChangeSize() {
+        this.setState({width: window.innerWidth});
+    }
+    handleChangeName(e) {
         this.setState({name: e.target.value});
     }
-    handleChangeSurname (e) {
+    handleChangeSurname(e) {
         this.setState({surname: e.target.value});
     }
     render() {
-        return (
-            <div>
-                <form>
-                    <div>
-                        <p>Here is class component. Count is <b>{this.props.count}</b></p>
-                        <Button onClick={this.props.onClick}/>
-                    </div>
-                    <label>Name:</label>
-                    <input value={this.state.name} onChange={this.handleChangeName} />
-                    <label>Surname:</label>
-                    <input value={this.state.surname} onChange={this.handleChangeSurname} />
-                </form>
-            </div>
+        return (<LayoutContext.Consumer>
+                { theme =>
+                    (<div className={theme}>
+                        <form>
+                            <p>Here is class component</p>
+                            <label>Name:</label>
+                            <input value={this.state.name} onChange={this.handleChangeName} />
+                            <label>Surname:</label>
+                            <input value={this.state.surname} onChange={this.handleChangeSurname} />
+                            <label>Width:</label>
+                            <input value={this.state.width} readOnly />
+                            <LanguageContext.Consumer>
+                                {language => (<>
+                                    <label>Language</label>
+                                    <input value={language} readOnly />
+                                </>)}
+                            </LanguageContext.Consumer>
+                        </form>
+                    </div>)
+                }
+        </LayoutContext.Consumer>
         );
-    }
+    };
 }
-
-export default withHoc(ClassComponent);

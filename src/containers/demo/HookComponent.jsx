@@ -1,42 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import Button from '../../components/button';
-import { onChangeName } from '../hoc/hooks';
-import {HookComponent1} from './HookComponent1';
-
+import React, { useState, useEffect, useContext } from 'react';
+import { LayoutContext, LanguageContext} from '../../context';
 export function HookComponent() {
-    const [count, setCount] = useState(1);
-    const [name, setName] = useState('Nhan');
-    const [surname, setSurname] = useState('Hoang');
-    function handleClick() {
-        setCount(4);
-    }
-    const handleClickOutsite = onChangeName();
+    const name = useFormInput('Nhan');
+    const surname = useFormInput('Hoang');
+    const layout = useContext(LayoutContext);
+    const language = useContext(LanguageContext);
+    const width = useWidthWindowSize();
+    useTitleDocument(surname.value + ' ' + name.value);
+
+    return (<div className={layout}>
+        <form>
+            <p>Here is function component</p>
+            <label>Name:</label>
+            <input {...name} />
+            <label>Surname:</label>
+            <input {...surname} />
+            <label>Width:</label>
+            <input value={width} readOnly />
+            <label>Language</label>
+            <input value={language} readOnly />
+        </form>
+    </div>);
+}
+function useTitleDocument(title) {
     useEffect(() => {
-        setSurname(handleClickOutsite.count + 1);
-        // document.title = surname + ' ' + name;
+        document.title = title;
     });
-    function handleChangeName (e) {
-        setName(e.target.value);
+}
+
+function useFormInput(initialValue) {
+    const [value, setValue] = useState(initialValue);
+    function handleChange(e) {
+        setValue(e.target.value);
     }
-    function handleChangeSurname (e) {
-        setSurname(e.target.value);
-    }
-    console.log('hook');
-    return (
-        <div>
-            <form>
-                <div>
-                    <p>Here is hook component
-                        <b>{handleClickOutsite.count}</b>
-                    </p>
-                    <Button onClick={handleClickOutsite.handleChange} />
-                </div>
-                <label>Name:</label>
-                <input value={name} onChange={handleChangeName} />
-                <label>Surname:</label>
-                <input value={surname} onChange={handleChangeSurname} />
-            </form>
-            <HookComponent1 />
-        </div>
-    );
+    return {value, onChange: handleChange};
+}
+function useWidthWindowSize() {
+    const [width, setWidth] = useState(window.innerWidth);
+    useEffect(() => {
+        const handleChangeSize = () => setWidth(window.innerWidth);
+        window.addEventListener('resize', handleChangeSize);
+        return () => {
+            window.removeEventListener('resize', handleChangeSize);
+        };
+    });
+    return width;
 }

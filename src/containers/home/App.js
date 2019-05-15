@@ -1,20 +1,26 @@
 import React from 'react';
-import { HookComponent, ClassComponent, HookComponent1 } from '../demo';
+import { HookComponent, ClassComponent } from '../demo';
 import { LayoutContext, LanguageContext, layout, language } from '../../context';
 
 export default function App() {
   return (
-      <div>
-          <LayoutContext.Provider value={layout.centerHook}>
-              <LanguageContext.Provider value={language.vn}>
-                  <HookComponent />
-              </LanguageContext.Provider>
-          </LayoutContext.Provider>
+    <div className='container-fluid'>
+      <div className='row'>
           <LayoutContext.Provider value={layout.centerClass}>
               <LanguageContext.Provider value={language.us}>
-                  <ClassComponent />
+                  <div className='col-sm-6'>
+                      <ClassComponent />
+                  </div>
+              </LanguageContext.Provider>
+          </LayoutContext.Provider>
+          <LayoutContext.Provider value={layout.centerHook}>
+              <LanguageContext.Provider value={language.vn}>
+                  <div className='col-sm-6'>
+                    <HookComponent />
+                  </div>
               </LanguageContext.Provider>
           </LayoutContext.Provider>
       </div>
+    </div>
   );
 };
