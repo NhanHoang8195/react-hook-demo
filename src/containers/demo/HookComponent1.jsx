@@ -19,6 +19,7 @@ export function HookComponent1() {
         setSurname(e.target.value);
     }
     const handleClickOutsite = onChangeName();
+    console.log('1');
     return (
         <div>
             <form>

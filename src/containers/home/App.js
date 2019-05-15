@@ -8,7 +8,6 @@ export default function App() {
           <LayoutContext.Provider value={layout.centerHook}>
               <LanguageContext.Provider value={language.vn}>
                   <HookComponent />
-                  <HookComponent1 />
               </LanguageContext.Provider>
           </LayoutContext.Provider>
           <LayoutContext.Provider value={layout.centerClass}>
