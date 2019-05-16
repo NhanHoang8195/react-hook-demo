@@ -9,14 +9,14 @@ export default function App() {
           <LayoutContext.Provider value={layout.centerClass}>
               <LanguageContext.Provider value={language.us}>
                   <div className='col-sm-6'>
-                      <ClassComponent />
+                      <ClassComponent name='Nhan' />
                   </div>
               </LanguageContext.Provider>
           </LayoutContext.Provider>
           <LayoutContext.Provider value={layout.centerHook}>
               <LanguageContext.Provider value={language.vn}>
                   <div className='col-sm-6'>
-                    <HookComponent />
+                    <HookComponent name='Nhan' />
                   </div>
               </LanguageContext.Provider>
           </LayoutContext.Provider>

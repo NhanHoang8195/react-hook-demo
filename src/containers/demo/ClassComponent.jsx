@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { LayoutContext, LanguageContext } from '../../context';
+import { LanguageContext, LayoutContext } from '../../context';
 
 export default class ClassComponent extends Component {
     constructor(props) {
@@ -8,53 +8,51 @@ export default class ClassComponent extends Component {
             name: 'Nhan',
             surname: 'Hoang',
             width: window.innerWidth,
-        }
-        this.onChangeName = this.onChangeName.bind(this);
-        this.onChangeSurname = this.onChangeSurname.bind(this);
-        this.onChangeWindowWidth = this.onChangeWindowWidth.bind(this);
+        };
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangeSurname = this.handleChangeSurname.bind(this);
+        this.handleChangeWindowSize = this.handleChangeWindowSize.bind(this);
     }
     componentDidMount() {
         document.title = this.state.surname + ' ' + this.state.name;
-        window.addEventListener('resize', this.onChangeWindowWidth);
+        window.addEventListener('resize', this.handleChangeWindowSize);
     }
     componentDidUpdate() {
         document.title = this.state.surname + ' ' + this.state.name;
     }
     componentWillUnmount() {
-        window.removeEventListener('resize', this.onChangeWindowWidth);
+        window.removeEventListener('resize', this.handleChangeWindowSize);
     }
 
-    onChangeName(e) {
+    handleChangeName(e) {
         this.setState({name: e.target.value});
     }
-    onChangeSurname(e) {
+    handleChangeSurname(e) {
         this.setState({surname: e.target.value});
     }
-    onChangeWindowWidth() {
+    handleChangeWindowSize() {
         this.setState({width: window.innerWidth});
     }
     render() {
         return (
             <LayoutContext.Consumer>
-                {theme => (
-                    <div className={theme}>
-                        <form>
-                            <p>Here is class component</p>
-                            <label>Name:</label>
-                            <input value={this.state.name} onChange={this.onChangeName} />
-                            <label>Surname:</label>
-                            <input value={this.state.surname} onChange={this.onChangeSurname} />
-                            <LanguageContext.Consumer>
-                                {language => (<>
-                                    <label>Language:</label>
-                                    <input value={language} readOnly />
-                                </>)}
-                            </LanguageContext.Consumer>
-                            <label>Window width:</label>
-                            <input value={this.state.width} readOnly />
-                        </form>
-                    </div>
-                )}
+                {theme => (<div className={theme}>
+                    <form>
+                        <p>Here is class component</p>
+                        <label>Name:</label>
+                        <input value={this.state.name} onChange={this.handleChangeName} />
+                        <label>Surname:</label>
+                        <input value={this.state.surname} onChange={this.handleChangeSurname} />
+                        <LanguageContext.Consumer>
+                            {language => (<>
+                                <label>Language:</label>
+                                <input value={language} readOnly />
+                            </>)}
+                        </LanguageContext.Consumer>
+                        <label>Width:</label>
+                        <input value={this.state.width} readOnly />
+                    </form>
+                </div>)}
             </LayoutContext.Consumer>
         );
     }
